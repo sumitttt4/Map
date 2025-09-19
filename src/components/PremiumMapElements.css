@@ -1,0 +1,176 @@
+/* Coffee cup marker animation */
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-10px) scaleX(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(231, 148, 93, 0.3));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(231, 148, 93, 0.7));
+    transform: scale(1.05);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(231, 148, 93, 0.3));
+    transform: scale(1);
+  }
+}
+
+.coffee-marker {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.coffee-marker:hover {
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+  transform: translateY(-5px) scale(1.1);
+}
+
+.coffee-marker:hover .steam {
+  animation-play-state: running;
+}
+
+.steam {
+  animation: steamRise 3s infinite ease-in-out;
+  animation-play-state: paused;
+  transform-origin: 50% 100%;
+}
+
+.steam-1 {
+  animation-delay: 0.5s;
+}
+
+.steam-2 {
+  animation-delay: 0s;
+}
+
+.steam-3 {
+  animation-delay: 1s;
+}
+
+.featured-marker {
+  animation: markerPulse 2s infinite;
+}
+
+.marker-image {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 0 1.5px #A67C52;
+}
+
+/* Timeline styling */
+.event-timeline {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 15px 25px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-width: 85%;
+  overflow-x: auto;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.timeline-line {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, #83624A 0%, #E58A3C 100%);
+  top: 45px;
+  left: 25px;
+  right: 25px;
+  z-index: 0;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 15px;
+  position: relative;
+  min-width: 70px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.timeline-item:hover {
+  transform: translateY(-3px);
+}
+
+.timeline-point {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #83624A;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-point.tasting {
+  background-color: #E58A3C;
+}
+
+.timeline-point.workshop {
+  background-color: #5F4339;
+}
+
+.timeline-point.competition {
+  background-color: #D04A2F;
+}
+
+.timeline-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5F4339;
+  margin-bottom: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timeline-city {
+  font-size: 0.7rem;
+  color: #83624A;
+  max-width: 80px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+/* Connecting lines between events */
+.event-connection {
+  stroke: rgba(231, 148, 93, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+  animation: dash 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}

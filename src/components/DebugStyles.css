@@ -1,0 +1,41 @@
+/* The main container needs to have a height */
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Make sure the map and its parent containers have height */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  z-index: 1;
+}
+
+.leaflet-control-container {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Fix any potential z-index issues */
+.map-container .leaflet-pane {
+  z-index: 1;
+}
+
+.map-container .leaflet-control-container {
+  z-index: 2;
+}
+
+/* Debug styles */
+.debug-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

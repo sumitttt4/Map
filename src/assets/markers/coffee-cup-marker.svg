@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="50" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Handle -->
+  <path d="M35 15C38 15 40 12 40 9C40 6 38 5 35 5C32 5 29 5 29 5L30 15C30 15 32 15 35 15Z" fill="#8B5A2B"/>
+  
+  <!-- Cup base -->
+  <path d="M30 42C30 46.4183 24.6274 50 18 50C11.3726 50 6 46.4183 6 42L8 15H28L30 42Z" fill="#E7945D"/>
+  <path d="M6 15L5 8H29L28 15H6Z" fill="#A67C52"/>
+  
+  <!-- Cup rim -->
+  <ellipse cx="17" cy="15" rx="12" ry="4" fill="#8B5A2B"/>
+  
+  <!-- Image placeholder (circle) -->
+  <circle cx="18" cy="28" r="8" fill="white" stroke="#A67C52" stroke-width="1.5"/>
+  
+  <!-- Steam (animated) -->
+  <path class="steam steam-1" d="M13 10C13 8 15 7 15 5C15 3 13 2 13 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <path class="steam steam-2" d="M18 12C18 10 20 9 20 7C20 5 18 4 18 2" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <path class="steam steam-3" d="M23 10C23 8 25 7 25 5C25 3 23 2 23 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+</svg>

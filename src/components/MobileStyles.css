@@ -1,0 +1,58 @@
+/* Additional styles for mobile responsiveness */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 60vh;
+    transform: translateY(calc(100% - 60px));
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    padding-top: 10px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.open {
+    transform: translateY(0);
+  }
+  
+  .map-container {
+    height: calc(100vh - 65px);
+    width: 100%;
+    position: relative;
+  }
+  
+  .event-list {
+    max-height: calc(60vh - 100px);
+    overflow-y: auto;
+  }
+  
+  header {
+    padding: 10px;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+  }
+  
+  .sunburst-logo {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  
+  .logo-container {
+    margin-bottom: 5px;
+  }
+}
