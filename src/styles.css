@@ -775,6 +775,39 @@ body {
   filter: drop-shadow(0 0 2px rgba(229, 138, 60, 0.3));
 }
 
+/* Chronological Dotted Route */
+.chronological-route {
+  stroke-dasharray: 10 8;
+  stroke-width: 4px;
+  stroke: #E58A3C;
+  fill: none;
+  opacity: 0.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(229, 138, 60, 0.4));
+  animation: route-draw 2s ease-out, route-pulse 4s ease-in-out infinite 2s;
+}
+
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+}
+
+@keyframes route-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .animated-path {
   stroke-dasharray: 20 10;
   stroke-width: 3px;
@@ -951,41 +984,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 18px;
-  border-radius: 16px;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
   font-size: 14px;
-  font-weight: 600;
-  border: 2px solid transparent;
+  font-weight: 500;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.025em;
+  min-height: auto;
 }
 
 .zoom-btn {
-  background: linear-gradient(135deg, var(--coffee-cream) 0%, var(--coffee-foam) 100%);
-  color: var(--coffee-dark);
-  border-color: var(--espresso-accent);
+  background: #f3f4f6;
+  color: #6b7280;
 }
 
 .zoom-btn:hover {
-  background: var(--coffee-gradient);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--card-shadow);
+  background: #e5e7eb;
+  color: #1f2937;
 }
 
 .reset-btn {
-  background: linear-gradient(135deg, var(--coffee-light) 0%, var(--espresso-secondary) 100%);
+  background: #92400e;
   color: white;
 }
 
 .reset-btn:hover {
-  background: linear-gradient(135deg, var(--espresso-primary) 0%, var(--coffee-dark) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--card-shadow);
+  background: #7c2d12;
 }
 
 /* Dropdown */

@@ -14,7 +14,8 @@ export const events = [
     status: 'UPCOMING',
     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Seoul skyline
     highlightsLink: 'https://twitter.com/EspressoSystems',
-    description: 'Clubs, crypto, and coffee.',
+    registrationLink: 'https://example.com/register-seoul',
+    description: 'Join us for an exclusive coffee tasting experience in the heart of Seoul. Discover the perfect blend of clubs, crypto, and coffee culture.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
@@ -32,7 +33,8 @@ export const events = [
     status: 'UPCOMING',
     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Seoul Hannam
     highlightsLink: 'https://twitter.com/EspressoSystems',
-    description: 'Clubs, crypto, and coffee.',
+    registrationLink: 'https://example.com/register-hannam',
+    description: 'Learn the art of coffee brewing with our expert partners. A hands-on workshop combining the best of crypto technology and coffee craftsmanship.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {

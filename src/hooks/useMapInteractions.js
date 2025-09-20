@@ -45,7 +45,9 @@ export const useMapInteractions = (events, map) => {
       isAnimating.current = true;
       setHoveredEvent(event);
 
-      const targetZoom = Math.min(map.getZoom() + 2, 18);
+      // More dynamic zoom based on current zoom level
+      const currentZoom = map.getZoom();
+      const targetZoom = currentZoom < 5 ? Math.min(currentZoom + 3, 8) : Math.min(currentZoom + 2, 12);
       const mapWidth = map.getSize().x;
 
       // Calculate adjusted latlng so marker appears ~20% from left
@@ -55,14 +57,14 @@ export const useMapInteractions = (events, map) => {
       const adjustedLatLng = map.containerPointToLatLng(adjustedPoint);
 
       map.flyTo(adjustedLatLng, targetZoom, {
-        duration: 0.6,
-        easeLinearity: 0.25
+        duration: 0.5,
+        easeLinearity: 0.2
       });
 
       // Reset animation flag after animation completes
       setTimeout(() => {
         isAnimating.current = false;
-      }, 650);
+      }, 550);
 
     } catch (error) {
       console.warn('Hover interaction cancelled');
@@ -82,15 +84,15 @@ export const useMapInteractions = (events, map) => {
     setHoveredEvent(null);
 
     map.flyTo(previousView.current.center, previousView.current.zoom, {
-      duration: 0.6,
-      easeLinearity: 0.25
+      duration: 0.5,
+      easeLinearity: 0.2
     });
 
     // Reset animation flag and clear stored view
     setTimeout(() => {
       isAnimating.current = false;
       previousView.current = { center: null, zoom: null };
-    }, 600);
+    }, 550);
   }, [map]);
 
   // Handle card hover (same as marker hover)

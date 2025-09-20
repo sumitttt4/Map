@@ -208,9 +208,10 @@ const CoffeeMarker = ({
         mouseover: (e) => {
           const element = e.target.getElement();
           if (element) {
-            element.style.transform = 'scale(1.1) translateY(-6px)';
+            element.style.transform = 'scale(1.15) translateY(-8px)';
             element.style.zIndex = '1000';
-            element.style.transition = 'all 0.3s ease';
+            element.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+            element.style.filter = 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.3))';
             // Add tooltip on hover
             element.title = eventCount > 1 
               ? `${eventCount} events at this location` 
@@ -224,6 +225,7 @@ const CoffeeMarker = ({
           if (element) {
             element.style.transform = 'scale(1) translateY(0)';
             element.style.zIndex = '999';
+            element.style.filter = 'drop-shadow(0 4px 8px rgba(139, 69, 19, 0.15))';
           }
           onMouseOut?.();
         }

@@ -2,12 +2,15 @@ import React, { useState, useRef } from 'react';
 import Header from '../components/Header';
 import LeftPanel from '../components/LeftPanel';
 import MapWithMarkers from '../components/MapWithMarkers';
+import EventDetailsModal from '../components/EventDetailsModal';
 import { events } from '../data/events.js';
 
 const MapPage = () => {
   const [filter, setFilter] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showEventDetails, setShowEventDetails] = useState(false);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [modalEvent, setModalEvent] = useState(null);
   const [isMobilePanelOpen, setIsMobilePanelOpen] = useState(false);
   // New map control states
   const [showNumbers, setShowNumbers] = useState(false);
@@ -37,6 +40,9 @@ const MapPage = () => {
   };
 
   const handleMarkerClick = (event) => {
+    // Open detailed modal for marker clicks
+    setModalEvent(event);
+    setShowEventModal(true);
     setSelectedEvent(event);
     setIsMobilePanelOpen(true); // Open panel when marker is clicked on mobile
   };
@@ -76,6 +82,11 @@ const MapPage = () => {
   const closeEventDetails = () => {
     setSelectedEvent(null);
     setIsMobilePanelOpen(false);
+  };
+
+  const closeEventModal = () => {
+    setShowEventModal(false);
+    setModalEvent(null);
   };
 
   // Mobile panel toggle
@@ -125,6 +136,13 @@ const MapPage = () => {
           />
         </div>
       </div>
+
+      {/* Event Details Modal */}
+      <EventDetailsModal
+        event={modalEvent}
+        isOpen={showEventModal}
+        onClose={closeEventModal}
+      />
     </div>
   );
 };

@@ -151,13 +151,19 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
           maxZoom={19}
         />
 
-        {/* Static Route (controlled by parent) - No animations */}
-        {(showRoute || isPathVisible) && (
+        {/* Chronological Dotted Route (controlled by parent) */}
+        {(showRoute || isPathVisible) && routeCoordinates.length > 1 && (
           <Polyline
             positions={routeCoordinates}
-            color="#E58A3C"
-            weight={3}
-            opacity={0.8}
+            pathOptions={{
+              color: "#E58A3C",
+              weight: 4,
+              opacity: 0.8,
+              dashArray: "10 8",
+              lineCap: "round",
+              lineJoin: "round",
+              className: "chronological-route"
+            }}
           />
         )}
 
