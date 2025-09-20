@@ -11,7 +11,8 @@ export const events = [
     date: '20 Sep 2025, 4:00 pm',
     attendees: 250,
     type: 'tasting', // Updated: type is now tasting, workshop, or competition
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'UPCOMING',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Seoul skyline
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
@@ -28,7 +29,8 @@ export const events = [
     date: '22 Sep 2025, 12:00 pm',
     attendees: 100,
     type: 'workshop',
-    image: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'UPCOMING',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Seoul Hannam
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
@@ -45,13 +47,34 @@ export const events = [
     date: '25 Sep 2025, 8:00 pm',
     attendees: 150,
     type: 'tasting',
-    image: 'https://images.unsplash.com/photo-1559070081-648fb00b2ed1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'UPCOMING',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Seoul
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
     id: 4,
+    name: 'Buenos Aires Blockchain Week',
+    location: [-34.6037, -58.3816], // Buenos Aires, Argentina
+    lat: -34.6037,
+    lng: -58.3816,
+    city: 'Buenos Aires',
+    country: 'Argentina',
+    venue: 'Teatro Colón',
+    date: '5 Oct 2025',
+    attendees: 1800,
+    featured: true,
+    type: 'tasting',
+    status: 'UPCOMING',
+    image: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Buenos Aires
+    highlightsLink: 'https://twitter.com/EspressoSystems',
+    description: 'Clubs, crypto, and coffee.',
+    detailedInfo: 'Espresso with skyline energy.'
+  },
+  // Past Events
+  {
+    id: 5,
     name: 'Espresso Brews WebX',
     location: [35.6895, 139.6917], // Tokyo, Japan
     lat: 35.6895,
@@ -62,13 +85,14 @@ export const events = [
     date: '26 Aug 2025, 10:00 am',
     attendees: 200,
     type: 'workshop',
-    image: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Tokyo
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
-    id: 5,
+    id: 6,
     name: 'Ethereum 10Y Anniversary San Francisco',
     location: [37.7749, -122.4194], // San Francisco, CA, USA
     lat: 37.7749,
@@ -77,16 +101,17 @@ export const events = [
     country: 'USA',
     venue: 'Frontier Tower',
     date: '30 Jul 2025, 4:00 pm',
-  attendees: 500,
-  featured: true,
+    attendees: 500,
+    featured: true,
     type: 'competition',
-    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // San Francisco
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
-    id: 6,
+    id: 7,
     name: 'Berlin Blockchain Week',
     location: [52.5200, 13.4050], // Berlin, Germany
     lat: 52.5200,
@@ -95,16 +120,17 @@ export const events = [
     country: 'Germany',
     venue: 'Tech Hub Berlin',
     date: '15 Nov 2024',
-  attendees: 3000,
-  featured: true,
+    attendees: 3000,
+    featured: true,
     type: 'competition',
-    image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Berlin
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
-    id: 7,
+    id: 8,
     name: 'Brussels Blockchain Summit',
     location: [50.8476, 4.3572], // Brussels, Belgium
     lat: 50.8476,
@@ -113,16 +139,17 @@ export const events = [
     country: 'Belgium',
     venue: 'The Grand Place',
     date: '25 Sep 2024',
-  attendees: 2200,
-  featured: true,
+    attendees: 2200,
+    featured: true,
     type: 'competition',
-    image: 'https://images.unsplash.com/photo-1626231564263-f0d87e261b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1626231564263-f0d87e261b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Brussels
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
   },
   {
-    id: 8,
+    id: 9,
     name: 'Bangkok Crypto Conference',
     location: [13.7563, 100.5018], // Bangkok, Thailand
     lat: 13.7563,
@@ -131,28 +158,11 @@ export const events = [
     country: 'Thailand',
     venue: 'Bangkok Convention Center',
     date: '12 Jul 2024',
-  attendees: 2600,
-  featured: true,
+    attendees: 2600,
+    featured: true,
     type: 'competition',
-    image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    highlightsLink: 'https://twitter.com/EspressoSystems',
-    description: 'Clubs, crypto, and coffee.',
-    detailedInfo: 'Espresso with skyline energy.'
-  },
-  {
-    id: 9,
-    name: 'Buenos Aires Blockchain Week',
-    location: [-34.6037, -58.3816], // Buenos Aires, Argentina
-    lat: -34.6037,
-    lng: -58.3816,
-    city: 'Buenos Aires',
-    country: 'Argentina',
-    venue: 'Teatro Colón',
-    date: '5 Oct 2025',
-  attendees: 1800,
-  featured: true,
-    type: 'tasting',
-    image: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Bangkok
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
@@ -169,7 +179,8 @@ export const events = [
     date: 'June 2023',
     attendees: 1800,
     type: 'workshop',
-    image: 'https://images.unsplash.com/photo-1634507307799-ace9b49840b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1634507307799-ace9b49840b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Denver
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
@@ -184,10 +195,11 @@ export const events = [
     country: 'USA',
     venue: 'Manhattan Conference Center',
     date: 'November 2023',
-  attendees: 2500,
-  featured: true,
+    attendees: 2500,
+    featured: true,
     type: 'competition',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // New York
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'
@@ -202,10 +214,11 @@ export const events = [
     country: 'France',
     venue: 'Palais des Festivals',
     date: 'May 2024',
-  attendees: 2400,
-  featured: true,
+    attendees: 2400,
+    featured: true,
     type: 'tasting',
-    image: 'https://images.unsplash.com/photo-1565623833408-d77e39b88af6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    status: 'PAST',
+    image: 'https://images.unsplash.com/photo-1565623833408-d77e39b88af6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', // Cannes
     highlightsLink: 'https://twitter.com/EspressoSystems',
     description: 'Clubs, crypto, and coffee.',
     detailedInfo: 'Espresso with skyline energy.'

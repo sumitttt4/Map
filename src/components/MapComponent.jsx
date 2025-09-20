@@ -7,6 +7,7 @@ import { events } from '../data/events.js';
 import CoffeeMarker from './CoffeeMarker';
 import EventTimeline from './EventTimeline';
 import ConnectingLines from './ConnectingLines';
+import FloatingEventCard from './FloatingEventCard';
 
 // Fix for default markers in Leaflet
 import L from 'leaflet';
@@ -93,6 +94,7 @@ const PremiumPopup = ({ event }) => {
 
 const MapComponentInner = ({ filter }, ref) => {
   const [activeEvent, setActiveEvent] = useState(null);
+  const [showCard, setShowCard] = useState(false);
   const mapRef = useRef(null);
   
   const filteredEvents = filter === 'all' ? events : events.filter(event => event.type === filter);
@@ -107,7 +109,8 @@ const MapComponentInner = ({ filter }, ref) => {
   };
   
   const handleMarkerClick = (event) => {
-    setActiveEvent(event);
+  setActiveEvent(event);
+  setShowCard(true);
   };
   
   const resetView = () => {
@@ -130,7 +133,7 @@ const MapComponentInner = ({ filter }, ref) => {
   }));
 
   return (
-    <>
+  <>
       <MapContainer 
         center={[20, 0]} 
         zoom={2} 
@@ -209,16 +212,28 @@ const MapComponentInner = ({ filter }, ref) => {
       </div>
       
       {/* Event timeline */}
-      <EventTimeline 
-        events={filteredEvents} 
-        onEventSelect={(event) => {
-          setActiveEvent(event);
-          mapRef.current.flyTo([event.lat, event.lng], 8, {
-            animate: true,
-            duration: 1.5
-          });
-        }} 
-      />
+      {/* Desktop: show event panel/timeline; Mobile: hide panel, show card only */}
+      <div className="event-panel">
+        <EventTimeline 
+          events={filteredEvents} 
+          onEventSelect={(event) => {
+            setActiveEvent(event);
+            setShowCard(true);
+            mapRef.current.flyTo([event.lat, event.lng], 8, {
+              animate: true,
+              duration: 1.5
+            });
+          }} 
+        />
+      </div>
+
+      {/* Floating event card (shown when marker is clicked) */}
+      {activeEvent && showCard && (
+        <FloatingEventCard 
+          event={activeEvent} 
+          onClose={() => setShowCard(false)} 
+        />
+      )}
     </>
   );
 };
