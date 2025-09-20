@@ -10,7 +10,9 @@ const LeftPanel = ({
   filter,
   setFilter,
   onCardHover,
-  onCardMouseOut
+  onCardMouseOut,
+  isMobilePanelOpen,
+  onToggleMobilePanel
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -21,9 +23,9 @@ const LeftPanel = ({
   ];
 
   return (
-    <div className="left-panel">
+    <div className={`left-panel ${isMobilePanelOpen ? 'mobile-open' : ''}`}>
       {/* Header */}
-      <div className="left-panel-header">
+      <div className="left-panel-header" onClick={onToggleMobilePanel}>
         <p className="events-count-text">
           {events.length} {events.length === 1 ? 'event' : 'events'}
         </p>

@@ -8,6 +8,7 @@ const MapPage = () => {
   const [filter, setFilter] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showEventDetails, setShowEventDetails] = useState(false);
+  const [isMobilePanelOpen, setIsMobilePanelOpen] = useState(false);
   // New map control states
   const [showNumbers, setShowNumbers] = useState(false);
   const [showRoute, setShowRoute] = useState(false);
@@ -26,6 +27,7 @@ const MapPage = () => {
       return;
     }
     setSelectedEvent(event);
+    setIsMobilePanelOpen(true); // Open panel when event is selected on mobile
     if (mapRef.current) {
       mapRef.current.flyTo([event.lat, event.lng], 6, {
         animate: true,
@@ -36,6 +38,7 @@ const MapPage = () => {
 
   const handleMarkerClick = (event) => {
     setSelectedEvent(event);
+    setIsMobilePanelOpen(true); // Open panel when marker is clicked on mobile
   };
 
   // Handle card hover interactions
@@ -72,6 +75,12 @@ const MapPage = () => {
 
   const closeEventDetails = () => {
     setSelectedEvent(null);
+    setIsMobilePanelOpen(false);
+  };
+
+  // Mobile panel toggle
+  const toggleMobilePanel = () => {
+    setIsMobilePanelOpen(!isMobilePanelOpen);
   };
 
   // Toggle handlers passed to Header
@@ -101,6 +110,8 @@ const MapPage = () => {
           setFilter={setFilter}
           onCardHover={handleCardHover}
           onCardMouseOut={handleCardMouseOut}
+          isMobilePanelOpen={isMobilePanelOpen}
+          onToggleMobilePanel={toggleMobilePanel}
         />
         
         <div className="map-container-full relative">

@@ -1,58 +1,438 @@
-/* Additional styles for mobile responsiveness */
-@media (max-width: 768px) {
-  .app {
-    flex-direction: column;
-  }
+/* Mobile-First Responsive Design for Coffee Map */
 
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .left-panel {
+    width: 320px;
+  }
+  
+  .left-panel-header {
+    padding: 16px;
+  }
+  
+  .events-count-text {
+    font-size: 14px;
+  }
+}
+
+/* Mobile Landscape (768px and below) */
+@media (max-width: 768px) {
+  .app-layout {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+  
   .main-content {
     flex-direction: column;
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
   }
-
-  .sidebar {
-    width: 100%;
-    height: 60vh;
-    transform: translateY(calc(100% - 60px));
+  
+  /* Collapsible left panel for mobile */
+  .left-panel {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    width: 100%;
+    height: 70vh;
+    max-height: 70vh;
     border-radius: 20px 20px 0 0;
-    padding-top: 10px;
+    border-right: none;
+    border-top: 3px solid var(--espresso-secondary);
     z-index: 1000;
-    transition: transform 0.3s ease;
+    box-shadow: 0 -4px 20px rgba(139, 69, 19, 0.2);
+    transform: translateY(calc(100% - 80px));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .sidebar.open {
+  .left-panel.mobile-open {
     transform: translateY(0);
   }
   
-  .map-container {
-    height: calc(100vh - 65px);
+  /* Mobile panel header with drag handle */
+  .left-panel-header {
+    position: relative;
+    padding: 12px 20px 8px 20px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(135deg, var(--coffee-foam) 0%, var(--coffee-cream) 100%);
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .left-panel-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: var(--espresso-accent);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+  
+  .left-panel-header::after {
+    content: '👆 Tap to view events';
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: var(--coffee-medium);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .left-panel:not(.mobile-open) .left-panel-header::after {
+    opacity: 1;
+  }
+  
+  .events-count-text {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  /* Adjust filter and utility sections for mobile */
+  .filter-section {
+    padding: 12px 20px;
+  }
+  
+  .filter-pills {
+    gap: 8px;
+  }
+  
+  .filter-pill {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .utility-actions {
+    padding: 12px 20px;
+  }
+  
+  .action-btn {
+    padding: 10px 14px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  /* Events list for mobile */
+  .events-list {
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+  }
+  
+  .events-container {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  /* Selected event details for mobile */
+  .selected-event-details {
+    margin: 16px 16px 12px 16px;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .selected-event-header {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .selected-event-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .selected-event-title {
+    font-size: 16px;
+  }
+  
+  .selected-event-location {
+    font-size: 13px;
+  }
+  
+  /* Event cards for mobile */
+  .event-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .event-card-title {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  
+  .event-detail-item {
+    font-size: 13px;
+  }
+  
+  .event-tags {
+    gap: 6px;
+  }
+  
+  .event-tag {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  /* Map container for mobile */
+  .map-container-full {
+    flex: 1;
     width: 100%;
+    height: 100%;
     position: relative;
   }
   
-  .event-list {
-    max-height: calc(60vh - 100px);
-    overflow-y: auto;
+  /* Mobile map interaction overlay */
+  .mobile-map-overlay {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 248, 220, 0.95);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--espresso-secondary);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--coffee-dark);
+    z-index: 500;
+    animation: fadeInUp 0.3s ease;
+    pointer-events: none;
   }
   
-  header {
-    padding: 10px;
-    flex-direction: column;
+  /* Header adjustments for mobile */
+  .header {
+    padding: 12px 16px;
+    min-height: 60px;
   }
   
-  h1 {
-    font-size: 1.3rem;
+  .header-left h1 {
+    font-size: 18px;
   }
   
-  .sunburst-logo {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
+  .logo-container img {
+    width: 32px;
+    height: 32px;
   }
   
-  .logo-container {
-    margin-bottom: 5px;
+  .header-controls {
+    gap: 8px;
+  }
+  
+  .control-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Phone Portrait (576px and below) */
+@media (max-width: 576px) {
+  .left-panel {
+    height: 75vh;
+    max-height: 75vh;
+    transform: translateY(calc(100% - 70px));
+  }
+  
+  .left-panel-header {
+    padding: 10px 16px 6px 16px;
+  }
+  
+  .events-count-text {
+    font-size: 13px;
+  }
+  
+  .filter-section,
+  .utility-actions {
+    padding: 10px 16px;
+  }
+  
+  .action-buttons-group {
+    gap: 6px;
+  }
+  
+  .action-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    min-width: 0;
+    flex: 1;
+  }
+  
+  .action-btn span {
+    display: none; /* Hide icons on very small screens */
+  }
+  
+  .events-container {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .event-card {
+    padding: 14px;
+  }
+  
+  .event-card-title {
+    font-size: 15px;
+  }
+  
+  .event-detail-item {
+    font-size: 12px;
+  }
+  
+  .selected-event-details {
+    margin: 12px;
+    padding: 14px;
+  }
+  
+  .selected-event-title {
+    font-size: 15px;
+  }
+  
+  .header {
+    padding: 10px 12px;
+    min-height: 56px;
+  }
+  
+  .header-left h1 {
+    font-size: 16px;
+  }
+  
+  .logo-container img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .control-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  
+  /* Adjust coffee markers for mobile */
+  .beautiful-coffee-marker {
+    transform: scale(0.8);
+  }
+}
+
+/* Very Small Phones (480px and below) */
+@media (max-width: 480px) {
+  .left-panel {
+    transform: translateY(calc(100% - 60px));
+  }
+  
+  .events-count-text {
+    font-size: 12px;
+  }
+  
+  .filter-pill {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .action-btn {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+  
+  .event-card {
+    padding: 12px;
+  }
+  
+  .event-card-title {
+    font-size: 14px;
+  }
+  
+  .event-detail-item {
+    font-size: 11px;
+  }
+  
+  .beautiful-coffee-marker {
+    transform: scale(0.7);
+  }
+  
+  /* Simplify popup content for small screens */
+  .leaflet-popup.custom-popup .leaflet-popup-content-wrapper {
+    max-width: 280px;
+    padding: 12px;
+  }
+  
+  .leaflet-popup.custom-popup h3 {
+    font-size: 14px;
+  }
+  
+  .leaflet-popup.custom-popup div[style*="margin-bottom"] {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .left-panel {
+    height: 85vh;
+    max-height: 85vh;
+    transform: translateY(calc(100% - 60px));
+  }
+  
+  .main-content {
+    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
+  }
+  
+  .header {
+    min-height: 50px;
+    padding: 8px 16px;
+  }
+  
+  .header-left h1 {
+    font-size: 16px;
+  }
+}
+
+/* Touch and interaction improvements */
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  .event-card,
+  .action-btn,
+  .filter-pill,
+  .close-details-btn {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Improve scroll performance on mobile */
+  .events-list,
+  .events-container {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Reduce motion for better performance */
+  .event-card:hover {
+    transform: none;
+  }
+  
+  .event-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Hide hover effects on touch devices */
+  .action-btn:hover,
+  .filter-pill:hover {
+    transform: none;
+  }
+  
+  .action-btn:active,
+  .filter-pill:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
   }
 }
