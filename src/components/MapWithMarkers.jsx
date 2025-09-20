@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import CoffeeMarker from './CoffeeMarker';
 import { useMapInteractions } from '../hooks/useMapInteractions';
 import { NumberedMarker } from './NumberedMarker';
+import InMapEventDetails from './InMapEventDetails';
 
 // Fix for default markers
 delete L.Icon.Default.prototype._getIconUrl;
@@ -39,6 +40,11 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
   const interactionMapRef = useRef(null);
   // numbered markers & route are controlled by parent props: showNumbers, showRoute
   
+  // In-map event details state
+  const [inMapDetailsOpen, setInMapDetailsOpen] = useState(false);
+  const [selectedInMapEvent, setSelectedInMapEvent] = useState(null);
+  const [selectedEventPosition, setSelectedEventPosition] = useState(null);
+  
   const {
     isPathVisible,
     hoveredEvent,
@@ -52,6 +58,25 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
 
   const setInteractionMapRef = (map) => {
     interactionMapRef.current = map;
+  };
+
+  // Enhanced marker click handler for in-map details
+  const handleInMapMarkerClick = (event) => {
+    console.log('Clicking event for in-map details:', event.name);
+    setSelectedInMapEvent(event);
+    setSelectedEventPosition([event.lat, event.lng]);
+    setInMapDetailsOpen(true);
+    
+    // DO NOT call onMarkerClick to avoid modal conflicts
+    // We want in-map details, not the modal
+  };
+
+  const closeInMapDetails = () => {
+    setInMapDetailsOpen(false);
+    setTimeout(() => {
+      setSelectedInMapEvent(null);
+      setSelectedEventPosition(null);
+    }, 300);
   };
 
   useImperativeHandle(ref, () => ({
@@ -180,7 +205,7 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
               backgroundColor="#E58A3C"
               onClick={() => {
                 if (group.events.length === 1) {
-                  onMarkerClick?.(primaryEvent);
+                  handleInMapMarkerClick(primaryEvent);
                 } else {
                   // Handle multiple events - show popup for numbered markers too
                   if (mapRef.current) {
@@ -210,7 +235,7 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
                     window.selectEvent = (eventId) => {
                       const selectedEvent = group.events.find(e => e.id === eventId);
                       if (selectedEvent) {
-                        onMarkerClick?.(selectedEvent);
+                        handleInMapMarkerClick(selectedEvent);
                         mapRef.current.closePopup();
                       }
                     };
@@ -235,14 +260,17 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
           const primaryEvent = group.events[0]; // Use first event for primary display
           const eventCount = group.events.length;
           
+          console.log('Rendering coffee marker for:', primaryEvent.name, 'showNumbers:', showNumbers);
+          
           return (
             <CoffeeMarker
               key={`group-${group.lat}-${group.lng}-${index}`}
               event={primaryEvent}
               position={[group.lat, group.lng]}
               onClick={() => {
+                console.log('CoffeeMarker clicked:', primaryEvent.name, 'eventCount:', eventCount);
                 if (eventCount === 1) {
-                  onMarkerClick?.(primaryEvent);
+                  handleInMapMarkerClick(primaryEvent);
                 } else {
                   // Handle multiple events - show popup at marker location
                   if (mapRef.current) {
@@ -273,7 +301,7 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
                     window.selectEvent = (eventId) => {
                       const selectedEvent = group.events.find(e => e.id === eventId);
                       if (selectedEvent) {
-                        onMarkerClick?.(selectedEvent);
+                        handleInMapMarkerClick(selectedEvent);
                         mapRef.current.closePopup();
                       }
                     };
@@ -305,6 +333,15 @@ const MapWithMarkers = forwardRef(({ events, selectedEvent, onMarkerClick, showN
           );
         })}
       </MapContainer>
+      
+      {/* In-Map Event Details */}
+      <InMapEventDetails
+        event={selectedInMapEvent}
+        position={selectedEventPosition}
+        isOpen={inMapDetailsOpen}
+        onClose={closeInMapDetails}
+        mapRef={mapRef}
+      />
     </div>
   );
 });

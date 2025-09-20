@@ -208,24 +208,31 @@ const CoffeeMarker = ({
         mouseover: (e) => {
           const element = e.target.getElement();
           if (element) {
-            element.style.transform = 'scale(1.15) translateY(-8px)';
+            // Enhanced hover animation with coffee theme
+            element.style.transform = 'scale(1.2) translateY(-12px) rotate(2deg)';
             element.style.zIndex = '1000';
-            element.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-            element.style.filter = 'drop-shadow(0 8px 16px rgba(139, 69, 19, 0.3))';
-            // Add tooltip on hover
+            element.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            element.style.filter = 'drop-shadow(0 12px 24px rgba(139, 69, 19, 0.4)) drop-shadow(0 4px 8px rgba(229, 138, 60, 0.3))';
+            
+            // Add pulsing animation
+            element.style.animation = 'coffee-hover-pulse 0.6s ease-in-out';
+            
+            // Add tooltip with coffee emoji
             element.title = eventCount > 1 
-              ? `${eventCount} events at this location` 
-              : `${event.name} - ${event.city}, ${event.country}`;
+              ? `☕ ${eventCount} events at this location - Click to explore!` 
+              : `☕ ${event.name} in ${event.city}, ${event.country} - Click for details!`;
           }
-          // Provide a small payload to the interaction handler
           onMouseOver?.({ id: event.id, latlng: e.latlng, event });
         },
         mouseout: (e) => {
           const element = e.target.getElement();
           if (element) {
-            element.style.transform = 'scale(1) translateY(0)';
-            element.style.zIndex = '999';
-            element.style.filter = 'drop-shadow(0 4px 8px rgba(139, 69, 19, 0.15))';
+            // Smooth return animation
+            element.style.transform = 'scale(1) translateY(0) rotate(0deg)';
+            element.style.zIndex = '500';
+            element.style.filter = 'none';
+            element.style.animation = 'none';
+            element.title = '';
           }
           onMouseOut?.();
         }
